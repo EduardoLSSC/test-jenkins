@@ -1,11 +1,10 @@
-//Groove
 pipeline {
     agent any
 
     stages {
         stage('Begin') {
             steps {
-                mvn test
+                sh 'mvn test'
             }
         }
     }
