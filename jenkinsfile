@@ -5,9 +5,7 @@ pipeline {
     stages {
         stage('Begin') {
             steps {
-                script {
-                    dockerapp = docker.build("eduardolss/jenkins-test", '-f ./src/Dockerfile ./src')
-                }
+                mvn test
             }
         }
     }
