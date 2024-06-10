@@ -8,7 +8,7 @@ public class Main {
         return "Hello, Jenkins!";
     }
     public static String getHelloMessageWrong() {
-        return "Hello, Jenkins!";
+        return "Helo, Jenkins!";
     }
 
 }
