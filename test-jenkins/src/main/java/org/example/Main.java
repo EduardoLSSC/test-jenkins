@@ -7,4 +7,8 @@ public class Main {
     public static String getHelloMessage() {
         return "Hello, Jenkins!";
     }
+    public static String getHelloMessageWrong() {
+        return "Helo, Jenkins!";
+    }
+
 }

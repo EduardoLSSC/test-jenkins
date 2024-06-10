@@ -8,5 +8,9 @@ public class TestMain {
     public void testMain() {
         assertEquals("Hello, Jenkins!", Main.getHelloMessage());
     }
+    @Test
+    public void testMainWrong() {
+        assertEquals("Hello, Jenkins!", Main.getHelloMessageWrong());
+    }
 }
 
