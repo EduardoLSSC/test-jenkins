@@ -5,7 +5,9 @@ pipeline {
     stages {
         stage('Begin') {
             steps {
-                echo 'beggining pipeline'
+                script {
+                    dockerapp = docker.build("eduardolss/jenkins-test", '-f ./src/Dockerfile ./src')
+                }
             }
         }
     }
