@@ -1,10 +1,35 @@
 pipeline {
     agent any
-
+    
+    environment {
+        MAVEN_HOME = tool 'Maven'
+    }
+    
     stages {
-        stage('Begin') {
+        stage('Checkout') {
             steps {
-                sh 'mvn test'
+                checkout scm
+            }
+        }
+        
+        stage('Build') {
+            steps {
+                sh "${env.MAVEN_HOME}/bin/mvn clean compile"
+            }
+        }
+        
+        stage('Test') {
+            steps {
+                sh "${env.MAVEN_HOME}/bin/mvn test"
+            }
+        }
+        
+        stage('Deploy to Develop') {
+            steps {
+                sh 'git checkout develop'
+                sh 'git add .'
+                sh 'git commit -m "Atualização automática da pipeline Jenkins"'
+                sh 'git push origin develop'
             }
         }
     }
