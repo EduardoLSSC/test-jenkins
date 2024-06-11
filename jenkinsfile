@@ -40,7 +40,7 @@ pipeline {
             if (hasChanges) {
                 // Adicionar e cometer as alterações
                 bat 'git checkout develop'
-                bat 'git pull origin develop'  // Garantir que estamos atualizados com a branch remota develop
+                bat 'git pull origin main'  // Garantir que estamos atualizados com a branch remota develop
                 bat 'git merge origin/main --no-ff'  // Mesclar as alterações da branch main para a branch develop
                 
                 // Resolver possíveis conflitos automaticamente
