@@ -31,30 +31,30 @@ pipeline {
         stage('Deploy to Develop') {
     steps {
         script {
-            // Verificar se há arquivos modificados
-            def hasChanges = bat(script: 'git status --porcelain', returnStatus: true) == 0
-            
-            // Verificar se a branch local é a develop
-            def isOnDevelop = bat(script: 'git rev-parse --abbrev-ref HEAD', returnStdout: true).trim() == 'develop'
-            
-            if (hasChanges) {
-                // Adicionar e cometer as alterações
-                bat 'git checkout develop'
-                bat 'git pull origin main'  // Garantir que estamos atualizados com a branch remota develop
-                bat 'git merge origin/main --no-ff'  // Mesclar as alterações da branch main para a branch develop
-                
-                // Resolver possíveis conflitos automaticamente
-                bat 'git checkout --ours .'    // Aceitar as alterações da branch develop em caso de conflito
-                bat 'git add .'
-                
-                // Cometer a mesclagem
-                bat 'git commit -m "Merge main into develop"'
-                
-                // Forçar o push das alterações para a branch remota
-                bat 'git push origin develop --force'
-            } else {
-                echo "Nenhuma alteração para commit. Ignorando etapa de deploy."
-            }
+            /// Verificar se há arquivos modificados
+                    def hasChanges = bat(script: 'git status --porcelain', returnStatus: true) == 0
+                    
+                    // Verificar se a branch local é a develop
+                    def isOnDevelop = bat(script: 'git rev-parse --abbrev-ref HEAD', returnStdout: true).trim() == 'develop'
+                    
+                    if (hasChanges) {
+                        // Adicionar e cometer as alterações
+                        bat 'git checkout develop'
+                        bat 'git pull origin main'  // Garantir que estamos atualizados com a branch remota develop
+                        bat 'git merge origin/main --no-ff'  // Mesclar as alterações da branch main para a branch develop
+                        
+                        // Resolver possíveis conflitos automaticamente
+                        bat 'git checkout --ours .'    // Aceitar as alterações da branch develop em caso de conflito
+                        bat 'git add .'
+                        
+                        // Cometer a mesclagem
+                        bat 'git commit -m "Merge main into develop"'
+                        
+                        // Forçar o push das alterações para a branch remota
+                        bat 'git push origin develop --force'
+                    } else {
+                        echo "Nenhuma alteração para commit. Ignorando etapa de deploy."
+                    }
         }
     }
 }
