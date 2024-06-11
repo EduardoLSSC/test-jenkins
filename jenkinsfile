@@ -35,7 +35,7 @@ pipeline {
                     bat 'git pull origin main'
                     bat 'git add .'
                     bat 'git commit -m "Atualização automática da pipeline Jenkins"'
-                    bat 'git push'
+                    bat 'git push --force'
                 }
             }
         }
