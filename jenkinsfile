@@ -32,9 +32,10 @@ pipeline {
             steps {
                 script {
                     bat 'git checkout develop'
+                    bat 'git pull origin main'
                     bat 'git add .'
                     bat 'git commit -m "Atualização automática da pipeline Jenkins"'
-                    bat 'git push origin main'
+                    bat 'git push'
                 }
             }
         }
