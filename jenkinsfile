@@ -32,10 +32,10 @@ pipeline {
     steps {
         script {
             // Verificar se há arquivos modificados
-            def hasChanges = sh(script: 'git status --porcelain', returnStatus: true) == 0
+            def hasChanges = bat(script: 'git status --porcelain', returnStatus: true) == 0
             
             // Verificar se a branch local é a develop
-            def isOnDevelop = sh(script: 'git rev-parse --abbrev-ref HEAD', returnStdout: true).trim() == 'develop'
+            def isOnDevelop = bat(script: 'git rev-parse --abbrev-ref HEAD', returnStdout: true).trim() == 'develop'
             
             if (hasChanges) {
                 // Adicionar e cometer as alterações
