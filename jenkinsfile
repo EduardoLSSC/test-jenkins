@@ -31,16 +31,12 @@ pipeline {
         stage('Deploy to Develop') {
     steps {
         script {
-            // Mudar para a branch "develop"
                     bat 'git checkout develop'
                     
-                    // Puxar as alterações mais recentes da branch "develop"
                     bat 'git pull origin develop'
                     
-                    // Mesclar as alterações da branch "main" na branch "develop"
                     bat 'git merge origin/main --no-ff -m "Merge main into develop"'
                     
-                    // Forçar o push das alterações para a branch "develop" remota
                     bat 'git push origin develop'
         }
     }
